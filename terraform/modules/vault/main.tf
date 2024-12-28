@@ -14,13 +14,9 @@ resource "docker_container" "vault" {
     internal = 8200
     external = 8200
   }
-  volumes {
-    driver = "local"
-    name   = "vault-data"
-  }
   command = ["server", "-dev", "-dev-root-token-id=root"]
   networks_advanced {
     name = var.docker_network_id
-    ip_address = var.docker_ip_address
+    ipv4_address = var.docker_ip_address
   }
 }

@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 2.20.0"
+    }
+  }
+}
+
 resource "docker_network" "homelab_network" {
   name = "homelab-network"
   ipam_config {

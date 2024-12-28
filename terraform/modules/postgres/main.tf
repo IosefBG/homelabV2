@@ -45,6 +45,6 @@ resource "docker_container" "postgres" {
   }
   networks_advanced {
     name = var.docker_network_id
-    ip_address = var.docker_ip_address
+    ipv4_address = var.docker_ip_address
   }
 }
