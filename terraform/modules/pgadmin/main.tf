@@ -15,8 +15,8 @@ resource "docker_container" "pgadmin" {
     external = 5050
   }
   env = [
-    "DOCKER_REGISTRY_USER=${var.docker_registry_user}",
-    "DOCKER_REGISTRY_PASS=${var.docker_registry_password}"
+    "DOCKER_REGISTRY_USER=admin",
+    "DOCKER_REGISTRY_PASS=admin"
   ]
   networks_advanced {
     name = var.docker_network_id

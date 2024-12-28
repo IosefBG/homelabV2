@@ -38,11 +38,11 @@ resource "docker_container" "postgres" {
     internal = 5432
     external = 5432
   }
-  environment = {
-    POSTGRES_DB       = var.db_name
-    POSTGRES_USER     = var.db_username
-    POSTGRES_PASSWORD = random_password.password.result
-  }
+  env = [
+    "POSTGRES_DB=${var.db_name}",
+    "POSTGRES_USER=${var.db_username}",
+    "POSTGRES_PASSWORD=${random_password.password.result}"
+  ]
   networks_advanced {
     name = var.docker_network_id
     ipv4_address = var.docker_ip_address
