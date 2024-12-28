@@ -1,3 +1,16 @@
+terraform {
+  required_providers {
+    postgresql = {
+      source  = "cyrilgdn/postgresql"
+      version = "~> 1.14.0"
+    }
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 2.20.0"
+    }
+  }
+}
+
 resource "random_password" "password" {
   length = 16
   special = true
