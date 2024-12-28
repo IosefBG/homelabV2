@@ -2,11 +2,11 @@ terraform {
   required_providers {
     postgresql = {
       source  = "cyrilgdn/postgresql"
-      version = "~> 1.14.0"
+      version = "~> 1.25.0"
     }
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 2.20.0"
+      version = "~> 3.0.0"
     }
   }
 }
@@ -21,14 +21,17 @@ resource "postgresql_database" "main" {
   name = var.db_name
 }
 
-resource "postgresql_user" "vault_user" {
-  name     = var.db_username
-  password = random_password.password.result
+resource "postgresql_role" "vault_user" {
+  name = "vault_user"
 }
 
-resource "postgresql_database_role_attachment" "vault_user" {
-  database_name = postgresql_database.main.name
-  role_name     = postgresql_user.vault_user.name
+resource "postgresql_user_mapping" "vault_user" {
+  server_name = postgresql_database.main.name
+  user_name   = var.db_username
+  options = {
+    user     = var.db_username
+    password = random_password.password.result
+  }
 }
 
 resource "docker_container" "postgres" {
@@ -47,4 +50,5 @@ resource "docker_container" "postgres" {
     name = var.docker_network_id
     ipv4_address = var.docker_ip_address
   }
+  dns = ["8.8.8.8", "8.8.4.4"]
 }

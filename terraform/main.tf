@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 2.20.0"
+      version = "~> 3.0.0"
     }
   }
 }
@@ -12,6 +12,12 @@ resource "docker_network" "homelab_network" {
   ipam_config {
     subnet = "192.168.1.0/24"
   }
+}
+
+module "nginx-proxy-manager" {
+  source = "./modules/nginx-proxy-manager"
+  docker_network_id = docker_network.homelab_network.id
+  docker_ip_address = "192.168.1.102"
 }
 
 module "postgres" {
@@ -24,12 +30,6 @@ module "vault" {
   source = "./modules/vault"
   docker_network_id = docker_network.homelab_network.id
   docker_ip_address = "192.168.1.101"
-}
-
-module "nginx-proxy-manager" {
-  source = "./modules/nginx-proxy-manager"
-  docker_network_id = docker_network.homelab_network.id
-  docker_ip_address = "192.168.1.102"
 }
 
 module "portainer" {

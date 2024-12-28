@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 2.20.0"
+      version = "~> 3.0.0"
     }
   }
 }
@@ -27,4 +27,5 @@ resource "docker_container" "nginx-proxy-manager" {
     name = var.docker_network_id
     ipv4_address = var.docker_ip_address
   }
+  dns = ["8.8.8.8", "8.8.4.4"]
 }
