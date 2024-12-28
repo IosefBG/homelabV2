@@ -1,0 +1,32 @@
+# Creează directoarele pentru Terraform
+New-Item -ItemType Directory -Path "terraform"
+New-Item -ItemType Directory -Path "terraform\modules"
+New-Item -ItemType Directory -Path "terraform\modules\postgres"
+New-Item -ItemType Directory -Path "terraform\modules\vault"
+New-Item -ItemType Directory -Path "terraform\modules\nginx-proxy-manager"
+New-Item -ItemType Directory -Path "terraform\modules\portainer"
+New-Item -ItemType Directory -Path "terraform\modules\pgadmin"
+
+# Creează fișierele Terraform
+New-Item -ItemType File -Path "terraform\modules\postgres\variables.tf"
+New-Item -ItemType File -Path "terraform\modules\postgres\main.tf"
+New-Item -ItemType File -Path "terraform\modules\postgres\outputs.tf"
+New-Item -ItemType File -Path "terraform\modules\vault\variables.tf"
+New-Item -ItemType File -Path "terraform\modules\vault\main.tf"
+New-Item -ItemType File -Path "terraform\modules\vault\outputs.tf"
+New-Item -ItemType File -Path "terraform\modules\nginx-proxy-manager\variables.tf"
+New-Item -ItemType File -Path "terraform\modules\nginx-proxy-manager\main.tf"
+New-Item -ItemType File -Path "terraform\modules\nginx-proxy-manager\outputs.tf"
+New-Item -ItemType File -Path "terraform\modules\portainer\variables.tf"
+New-Item -ItemType File -Path "terraform\modules\portainer\main.tf"
+New-Item -ItemType File -Path "terraform\modules\portainer\outputs.tf"
+New-Item -ItemType File -Path "terraform\modules\pgadmin\variables.tf"
+New-Item -ItemType File -Path "terraform\modules\pgadmin\main.tf"
+New-Item -ItemType File -Path "terraform\modules\pgadmin\outputs.tf"
+New-Item -ItemType File -Path "terraform\main.tf"
+New-Item -ItemType File -Path "terraform\variables.tf"
+New-Item -ItemType File -Path "terraform\outputs.tf"
+
+# Creează directorul și fișierul pentru scripturi
+New-Item -ItemType Directory -Path "scripts"
+New-Item -ItemType File -Path "scripts\setup-vault.sh"
